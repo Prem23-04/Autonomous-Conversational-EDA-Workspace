@@ -1,0 +1,29 @@
+# ── Core infrastructure ───────────────────────────────────────────────────────
+setuptools>=70.0.0
+Flask>=3.0.3
+Flask-Session>=0.8.0
+Werkzeug>=3.0.3
+python-dotenv>=1.0.1
+gunicorn>=22.0.0
+
+# ── Data science ──────────────────────────────────────────────────────────────
+pandas>=2.2.3
+numpy>=1.26.4
+openpyxl>=3.1.5
+matplotlib>=3.9.0
+seaborn>=0.13.2
+plotly>=5.22.0
+
+# ── Profiling ─────────────────────────────────────────────────────────────────
+ydata-profiling>=4.10.0
+
+# ── LangChain 0.3.x — all packages MUST be from the same generation ──────────
+# Do NOT mix with 0.1.x or 0.2.x packages; that causes the pydantic_v1 error.
+langchain==0.3.25
+langchain-core==0.3.65
+langchain-community==0.3.24
+langchain-experimental==0.3.4
+langchain-text-splitters==0.3.8
+langchain-openai==0.3.19
+langchain-groq==0.3.2
+langsmith>=0.2.0
