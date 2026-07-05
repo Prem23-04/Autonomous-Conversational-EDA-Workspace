@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autonomous Conversational EDA Workspace</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">◆</span>
+        <span class="brand-name">Conversational EDA Workspace</span>
+      </div>
+      <div class="dataset-status" id="datasetStatus">No dataset loaded</div>
+      <button class="reset-btn" id="resetBtn">Reset Session</button>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="upload">1. Upload &amp; Preview</button>
+      <button class="tab-btn" data-tab="profile">2. Profiling Report</button>
+      <button class="tab-btn" data-tab="chat">3. Chat with Data</button>
+    </nav>
+
+    <main class="tab-content">
+
+      <!-- UPLOAD TAB -->
+      <section id="tab-upload" class="tab-pane active">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" hidden>
+          <div class="dropzone-inner">
+            <div class="dropzone-icon">⇪</div>
+            <p><strong>Drag &amp; drop</strong> your .csv or .xlsx file here</p>
+            <p class="muted">or click to browse · max 50MB</p>
+          </div>
+        </div>
+        <div id="uploadMessage" class="message-box"></div>
+
+        <div class="clean-controls" id="cleanControls" style="display:none;">
+          <h3>Quick Clean</h3>
+          <div class="clean-row">
+            <label><input type="checkbox" id="dropDupes" checked> Drop duplicate rows</label>
+            <label>
+              Fill missing values:
+              <select id="fillStrategy">
+                <option value="none">Leave as-is</option>
+                <option value="mean">Mean (numeric)</option>
+                <option value="median">Median (numeric)</option>
+                <option value="drop">Drop rows with NA</option>
+              </select>
+            </label>
+            <button id="applyCleanBtn" class="primary-btn">Apply Cleaning</button>
+          </div>
+        </div>
+
+        <div id="previewContainer" class="preview-container"></div>
+      </section>
+
+      <!-- PROFILE TAB -->
+      <section id="tab-profile" class="tab-pane">
+        <div class="profile-controls">
+          <button id="generateProfileBtn" class="primary-btn">Generate Profiling Report</button>
+          <span id="profileStatus" class="muted"></span>
+        </div>
+        <iframe id="profileFrame" class="profile-frame" title="Profiling Report"></iframe>
+      </section>
+
+      <!-- CHAT TAB -->
+      <section id="tab-chat" class="tab-pane">
+        <div class="chat-window" id="chatWindow">
+          <div class="chat-msg agent">
+            <div class="bubble">
+              👋 Upload a dataset, then ask me things like
+              <em>"Show me the correlation between sales and humidity"</em> or
+              <em>"Plot the distribution of price"</em>.
+            </div>
+          </div>
+        </div>
+        <form id="chatForm" class="chat-input-row">
+          <input type="text" id="chatInput" placeholder="Ask a question about your data..." autocomplete="off">
+          <button type="submit" class="primary-btn">Send</button>
+        </form>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
